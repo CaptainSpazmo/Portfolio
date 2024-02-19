@@ -101,7 +101,8 @@ Het kan gebeuren dat je een error krijgt, probeer dan eerst sudo make {de comman
 Als je vragen, opmerkingen of problemen hebt, kun je contact met ons opnemen via:
 
 - E-mails:  [diyarfranklin2000@gmail.com](mailto:diyarfranklin2000@gmail.com), 
-            [9008292@student.zadkine.nl](mailto:9008292@student.zadkine.nl)
+            [9008292@student.zadkine.nl](mailto:9008292@student.zadkine.nl),
+            [mikeyheinrici@gmail.com](mailto:mikeyheinrici@gmail.com)
 
 - Discords: originalmatrix,
             captainspazmo
