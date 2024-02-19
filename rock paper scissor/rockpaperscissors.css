@@ -1,0 +1,22 @@
+.mid {
+    display: table;
+    margin: 0 auto;
+}
+.outcome{
+    display: table-cell;
+    width: 33.33%;
+    padding: 5px;
+}
+.you{
+    text-align: center;
+    font-size: 45px;
+    background-color: black;
+    color: white;
+}
+
+.background{
+    background-image: url("background.jpg");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
