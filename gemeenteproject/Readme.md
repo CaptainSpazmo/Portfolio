@@ -1,12 +1,12 @@
-# Projectnaam: Donkeytravel
+# Projectnaam: Gemeente Klachtform
 
 ## Beschrijving
 
-Donkeytravel is een Django-project ontworpen voor het beheer van reisgerelateerde gegevens.
+Gemeente Klachtform is een Django-project ontworpen voor het beheer van reisgerelateerde gegevens.
 
 ## Installatie
 
-Om Donkeytravel op je werkstation uit te voeren, moet je eerst de volgende tools en software installeren:
+Om Gemeente Klachtform op je werkstation uit te voeren, moet je eerst de volgende tools en software installeren:
 
 ### Docker
 
@@ -18,7 +18,7 @@ Docker is een essentieel onderdeel van het project, omdat het wordt gebruikt om 
 
 ### Python en Django
 
-Donkeytravel is gebaseerd op Django, dus zorg ervoor dat je Python en Django hebt geïnstalleerd op je werkstation:
+Gemeente Klachtform is gebaseerd op Django, dus zorg ervoor dat je Python en Django hebt geïnstalleerd op je werkstation:
 
 - Installeer Python: Ga naar de [Python-downloadpagina](https://www.python.org/downloads/) en volg de instructies voor het installeren van Python.
 
@@ -101,7 +101,8 @@ Het kan gebeuren dat je een error krijgt, probeer dan eerst sudo make {de comman
 Als je vragen, opmerkingen of problemen hebt, kun je contact met ons opnemen via:
 
 - E-mails:  [diyarfranklin2000@gmail.com](mailto:diyarfranklin2000@gmail.com), 
-            [9008292@student.zadkine.nl](mailto:9008292@student.zadkine.nl)
+            [9008292@student.zadkine.nl](mailto:9008292@student.zadkine.nl),
+            [mikeyheinrici@gmail.com](mailto:mikeyheinrici@gmail.com)
 
 - Discords: originalmatrix,
             captainspazmo
