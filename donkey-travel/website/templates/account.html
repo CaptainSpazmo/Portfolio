@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Account{% endblock %}
+
+{% block header %}
+<div class="header">
+    <div class="header-text-container">
+        <h1 class="header-text">Account</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+<div class="table-container">
+    <table class="Bookings-form-table">
+        {% csrf_token %}
+        {{ form.as_table }}
+    </table>
+</div>
+<div class="button-container">
+    <a class="update-button2" href="{% url 'password_change' %}">Change Password</a>
+    <button type="submit" class="update-button">Update</button>
+    <a class="delete-button2" href="{% url 'account_delete' user.pk %}">Delete Account</a>
+</div>
+</form>
+{% endblock %}
