@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% block title %}Klachtformulier{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- Include SweetAlert2 CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+<style>
+    #map {
+        height: 480px;
+        width: 100%;
+    }
+
+    #form-container {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .form-field {
+        margin-bottom: 10px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input,
+    textarea,
+    select {
+        width: calc(100% - 12px);
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<body>
+    <!-- Leaflet Map Container -->
+    <div id="map"></div>
+    <button id="get-location-button">Get My Location</button>
+
+    <!-- Form Container -->
+    <div id="form-container">
+        <script>
+            window.onload = function() {
+                {% if message %}
+                    Swal.fire({
+                        title: 'Success!',
+                        text: '{{ message }}',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                {% endif %}
+                {% if error %}
+                    Swal.fire({
+                        title: 'Error!',
+                        text: '{{ error }}',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                {% endif %}
+            };
+        </script>
+        <!-- Klacht Submission Form -->
+        <form enctype="multipart/form-data" id="gpsForm" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-field">
+                <button type="submit" id="submit-button" disabled>Submit</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+    <!-- JavaScript for Leaflet Map and Form Submission -->
+    <script>
+        // Initialize Leaflet map
+        let map = L.map('map').setView([51.9225, 4.47917], 13);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        let rotterdamBoundary = L.polygon([
+            [51.96443841311654, 4.377531599429041],
+            [51.97607151869904, 4.428343362776634],
+            [51.963169164357076, 4.447569435394643],
+            [51.98178121088395, 4.468855444364579],
+            [51.96020744414462, 4.5179505940855655],
+            [51.9925641995845, 4.592108302755025],
+            [51.970995625818276, 4.602751307239994],
+            [51.876352003085735, 4.568075711982515],
+            [51.86999293516394, 4.409460612883947],
+            [51.96443841311654, 4.380621503956935]  
+        ]).addTo(map);
+
+        // Initialize variables for marker and coordinates input
+        let marker;
+        let longitudeInput = document.getElementById('longitude');
+        let latitudeInput = document.getElementById('latitude');
+        let submitButton = document.getElementById('submit-button');
+
+        // Add click event listener to update marker and coordinates on map click
+        map.on('click', function (e) {
+            if (marker) {
+                map.removeLayer(marker);
+            }
+            if (rotterdamBoundary.getBounds().contains(e.latlng)) {
+                marker = L.marker(e.latlng).addTo(map);
+                submitButton.disabled = false;
+            } else {
+                alert("Markers can only be placed within Rotterdam.");
+                submitButton.disabled = true;
+            }
+
+        longitudeInput.value = e.latlng.lng;
+        latitudeInput.value = e.latlng.lat;
+        
+        // Enable the submit button
+
+        });
+
+        // Add click event listener to "Get My Location" button
+document.getElementById('get-location-button').addEventListener('click', function () {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            const userLatLng = [position.coords.latitude, position.coords.longitude];
+            if (marker) {
+                map.removeLayer(marker);
+            }
+            if (rotterdamBoundary.getBounds().contains(userLatLng)) {
+                marker = L.marker(userLatLng).addTo(map);
+                submitButton.disabled = false;
+            } else {
+                alert("Your location is outside Rotterdam.");
+                submitButton.disabled = true;
+            }
+
+            // Update input fields with user's coordinates
+            longitudeInput.value = position.coords.longitude;
+            latitudeInput.value = position.coords.latitude;
+        }, function (error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        });
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
+});
+
+    </script>
+
+{% endblock %}

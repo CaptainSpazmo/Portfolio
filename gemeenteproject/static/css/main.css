@@ -1,0 +1,398 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+/* Login CSS */
+.login_body {
+    font-family: Arial, sans-serif;
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .login-container {
+    background-color: #c4c4c4;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #888;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #666;
+  }
+  
+  .request-login {
+    background-color: transparent;
+    color: black;
+    margin-top: 20px;
+    padding: 0;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .error-messages {
+    color: red;
+    margin-bottom: 15px;
+  }
+  
+  .error {
+    margin-bottom: 5px;
+  }
+
+  .register-container {
+    background-color: #c4c4c4;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  /* dashboard styling */
+.header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.menu-buttons {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-buttons button {
+    background-color: #4CAF50;
+    font-size: x-large;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.search-form .form-label {
+    margin-right: 10px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filters-section {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.results-section {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.results-table th, .results-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #ddd;
+    color: black;
+    margin: 0 4px;
+}
+
+.pagination a:hover {
+    background-color: #ccc;
+}
+
+.pagination span {
+    padding: 8px 16px;
+    margin: 0 4px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.filters-section, .results-section {
+    flex: 1; /* This ensures that both sections take up equal space */
+    margin: 0 10px; /* This adds some space between the two sections */
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 5%;
+}
+
+.search-form h2 {
+    margin-bottom: 10px;
+}
+
+.search-form button {
+    margin-top: 10px; /* Space between the button and the last input */
+}
+
+.results-table {
+    width: 100%;
+    /* other styles */
+}
+
+
+/* Klacht detail */
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin: 5%;
+}
+.klacht-details {
+  flex: 1;
+  margin-right: 20px;
+}
+.klacht-image {
+  width: 340px;
+  height: auto;
+  max-height: 500px;
+  margin-bottom: 10px;
+}
+.klacht-form {
+  flex: 1;
+  padding: 20px;
+
+}
+.klacht-title {
+  margin-bottom: 5px;
+  font-size: 24px;
+  color: #333;
+}
+.klacht-description {
+  margin-bottom: 10px;
+  color: #666;
+}
+.klacht-date {
+  margin-bottom: 10px;
+  color: #666;
+}
+.klacht-poster {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive Login and Registration Forms */
+@media screen and (max-width: 600px) {
+  .login-container, .register-container {
+      width: 100%; /* Full width on small screens */
+      margin: 10px;
+  }
+}
+
+/* Responsive Dashboard Sections */
+@media screen and (max-width: 768px) {
+  .flex-container {
+      flex-direction: column;
+  }
+
+  .filters-section, .results-section {
+      margin: 0 0 20px 0; /* Adjust margin for stacked layout */
+  }
+
+  .search-form {
+      width: 100%;
+      margin: 20px 0;
+  }
+}
+
+/* Responsive Klacht Detail */
+@media screen and (max-width: 768px) {
+  .container {
+      flex-direction: column;
+  }
+
+  .klacht-details, .klacht-form {
+      margin-right: 0;
+      margin-bottom: 20px;
+      width: 100%; /* Full width on smaller screens */
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .pagination a, .pagination span {
+      padding: 6px 12px; /* Slightly smaller padding */
+      font-size: 0.8em; /* Smaller font size */
+      margin: 0 2px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .klacht-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    margin-bottom: 10px;
+  }
+  .klacht-form{
+    padding: 0;
+  }
+  .pagination a, .pagination span {
+      padding: 4px 8px; /* Even smaller padding for very small screens */
+      margin: 0 1px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu-buttons {
+      position: static; /* Change positioning on smaller screens */
+      transform: translateY(0); /* Remove transform */
+      text-align: center; /* Center-align the buttons */
+      margin-top: 20px; /* Add some space above the buttons */
+  }
+
+  .menu-buttons button {
+      font-size: large; /* Reduce font size */
+      padding: 5px 10px; /* Reduce padding */
+      margin-left: 5px; /* Reduce margin between buttons */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .login_body{
+    align-items: start;
+  }
+  .login-container, .register-container {
+      width: 90%; /* Adjust width to take up more screen space on small devices */
+      margin: 10px; /* Add some margin around the container */
+  }
+
+  .login-container, .register-container {
+      padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  input[type="text"], input[type="password"] {
+      padding: 8px; /* Adjust input padding for smaller screens */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .login-container, .register-container {
+      width: 100%; /* Full width for very small screens */
+      border-radius: 0; /* Optional: Remove border-radius for a full-width look */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .results-section {
+      overflow-x: auto; /* Enable horizontal scrolling */
+  }
+
+  .results-table {
+      min-width: 600px; /* Set a minimum width for the table */
+  }
+
+  .results-table th, .results-table td {
+      padding: 5px; /* Reduce padding for smaller screens */
+  }
+}

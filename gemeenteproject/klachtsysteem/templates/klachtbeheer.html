@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Klachtbeheer{% endblock %}
+{% block head %}
+<!-- Include SweetAlert2 CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+{% endblock %}
+{% block content %}
+<script>
+    window.onload = function() {
+        {% if old_klachten_notification %}
+            Swal.fire({
+                title: 'Be aware!',
+                text: '{{ old_klachten_notification }}',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+        {% endif %}
+    };
+</script>
+<main class="main-content">
+    <section class="search-section">
+        <form method="get" action="" class="search-form">
+            <label for="search" class="form-label">Klachtomschrijving Zoeken:</label>
+            <input type="text" id="search" name="search_desc" value="{{ request.GET.q }}" placeholder="Enter keywords">
+            <button type="submit">Zoeken</button>
+        </form>
+    </section>
+    <section class="flex-container">
+        <form method="get" action="">
+            <section class="filters-section">
+                <p>Filters:</p>
+                {{ search_form.as_p }}
+                <button type="submit">Zoeken</button>
+            </section>
+        </form>
+
+
+        <section class="results-section">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Omschrijving</th>
+                        <th>Status</th>
+                        <th>Datum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for klacht in klachten %}
+                    <tr data-id="{{ klacht.id }}">
+                        <td>{{ klacht.omschrijving }}</td>
+                        <td>{{ klacht.status.waarde }}</td>
+                        <td>{{ klacht.datum_melding|date:"d-m-Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">Geen klachten gevonden.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                {% if klachten.has_previous %}
+                    <a href="?page={{ klachten.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Vorige</a>
+                {% endif %}
+                <span>Pagina {{ klachten.number }} van {{ klachten.paginator.num_pages }}</span>
+                {% if klachten.has_next %}
+                    <a href="?page={{ klachten.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Volgende</a>
+                {% endif %}
+            </div>
+        </section>
+    </section>
+
+</main>
+<script type="text/javascript">
+    let baseUrl = '{% url "klacht" pk=0 %}';
+
+    function redirectToKlachtDetail(klachtId) {
+        let klachtDetailUrl = baseUrl.replace('0', klachtId);
+        window.location.href = klachtDetailUrl;
+    }
+
+    // Adding event listener to each table row
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('tr[data-id]').forEach(function(row) {
+            row.addEventListener('click', function() {
+                // Check if it's a touch device (small screen)
+                if ('ontouchstart' in document.documentElement) {
+                    redirectToKlachtDetail(row.getAttribute('data-id'));
+                } else {
+                    // Handle double-click for non-touch devices (desktop)
+                    let clicks = 0;
+                    row.addEventListener('click', function() {
+                        clicks++;
+                        if (clicks === 2) {
+                            redirectToKlachtDetail(row.getAttribute('data-id'));
+                            clicks = 0;
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
